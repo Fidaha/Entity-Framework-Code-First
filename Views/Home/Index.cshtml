@@ -1,0 +1,22 @@
+﻿@using Savings.Services;
+@using Savings.Models;
+@model Person
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Bonjour @Model.Name</h2>
+
+@foreach(var account in Model.SavingAccounts)
+{
+    <p>Compte N @account.SavingAccountId :</p>
+    <p>
+        Initial amount : @account.Amount (account.Rate by @(account.IsRateByMonth ? "month" : "year"))
+    </p>
+
+    <p>
+        Current amount : @SavingCalculator.ActualAmount(account)
+    </p>
+    <br/>
+}
